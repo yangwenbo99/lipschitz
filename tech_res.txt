@@ -1,0 +1,33 @@
+FC Lipschitz: 
+
+	Directly train 5 iteration: Accuracy: 0.6068
+		[ 2000] loss: 2.175
+
+	Lipstiz on FC layers, 5 iteration: Accuracy: 0.2362
+		[ 2000] loss: 2.304
+		[12000] loss: 1.898
+
+	time python lipschitz.py  test 'savepure'
+		[12000] loss: 1.046
+		Accuracy: 0.6045
+
+		real	1m58.454s
+
+	time python lipschitz.py  test 'loadpure adv skip'
+		Accuracy: 0.1
+
+
+
+	time python lipschitz.py  test 'loadpure adv saveadv'
+		Accuracy: 0.3193
+
+	time python lipschitz.py  test 'loadadv adv saveadv'
+
+LESSONS LEARNT: when training with Lipschitz constrain, the model shall be pre-trained with no constrain, otherwise the convergence can be slow
+
+
+
+After applying Conv: 
+	time python lipschitz.py  test 'savepure goforever'
+
+	time python lipschitz.py  test 'loadpure adv saveadv'

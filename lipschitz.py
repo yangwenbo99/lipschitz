@@ -9,13 +9,13 @@ Continuity
 
 import torch
 from torch import nn
-from exceptions import NotImplemented
+# from exceptions import NotImplemented
 
 from sys import argv
 
 from typing import List, Tuple
 
-DEBUG = 1
+DEBUG = 2
 
 class LipschitzEnforcer:
     def correct(*args):
@@ -164,6 +164,8 @@ class NetworkLipschitzEnforcer():
                 continue
             for correrctor_cls, params in corrector_list:
                 if correrctor_cls.is_applicable_to(m):
+                    if DEBUG >= 2:
+                        print('Applying', correrctor_cls, 'to', m)
                     self._correctors.append(correrctor_cls(m, *params))
 
     def add_enforcer(self, enforcer: LipschitzEnforcer):
